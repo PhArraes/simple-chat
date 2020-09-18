@@ -1,0 +1,66 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  chat:
+    host: localhost
+    paths: '/chat*'
+  socket:
+    host: localhost
+    paths: '/socket.io*'
+  identity:
+    host: localhost
+    paths: '/identity*'
+  api:
+    host: localhost
+    paths: '/ip'
+serviceEndpoints:
+  chat:
+    url: 'http://server:3001'
+  identity:
+    url: 'http://identity:3002'
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  identity:
+    apiEndpoints:
+      - identity
+    policies:
+    # - key-auth:
+      - proxy:
+        - action:
+            serviceEndpoint: identity 
+            changeOrigin: true
+            prependPath:  true
+            ignorePath:   false
+            stripPath:    true
+  chat:
+    apiEndpoints:
+      - chat
+    policies:
+    # - key-auth:
+      - proxy:
+        - action:
+            serviceEndpoint: chat 
+            changeOrigin: true
+            prependPath:  true
+            ignorePath:   false
+            stripPath:    true
+  socket:
+    apiEndpoints:
+      - socket
+    policies:
+    # - key-auth:
+      - proxy:
+        - action:
+            serviceEndpoint: socket 
+            changeOrigin: true

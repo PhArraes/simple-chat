@@ -1,0 +1,23 @@
+{
+  "name": "simple-chat-server",
+  "version": "1.0.0",
+  "description": "Simple chat with socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socket.io",
+    "javacript",
+    "docker",
+    "nodejs",
+    "express"
+  ],
+  "author": "Philipe Arraes (philipeyuri@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "ip": "^1.1.5",
+    "kafkajs": "^1.13.0",
+    "socket.io": "^2.3.0"
+  }
+}
